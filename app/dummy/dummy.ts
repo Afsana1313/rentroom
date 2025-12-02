@@ -4,71 +4,131 @@ export const dummyListings = [
     title: "Cozy apartment in Paris",
     location: "Paris, France",
     price: "$120 / night",
-    imageUrl:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80"
+    imageUrl: "/images/kualalampur/image.png"
   },
   {
     id: 2,
     title: "Beachfront villa",
     location: "Malibu, USA",
     price: "$450 / night",
-    imageUrl:
-      "https://images.unsplash.com/photo-1495433324511-bf8e92934d90?auto=format&fit=crop&w=400&q=80"
+    imageUrl: "/images/kualalampur/image2.png"
   },
   {
     id: 3,
     title: "Modern city loft",
     location: "New York, USA",
     price: "$300 / night",
-    imageUrl:
-      "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageUrl: "/images/kualalampur/image3.png"
   },
   {
     id: 4,
     title: "Cozy apartment in Paris",
     location: "Paris, France",
     price: "$120 / night",
-    imageUrl:
-      "https://plus.unsplash.com/premium_photo-1674676471417-07f613528a94?q=80&w=1690&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    guestFav: true,
+    imageUrl: "/images/kualalampur/image4.png"
   },
   {
     id: 5,
     title: "Beachfront villa",
     location: "Malibu, USA",
     price: "$450 / night",
-    imageUrl:
-      "https://images.unsplash.com/photo-1495433324511-bf8e92934d90?auto=format&fit=crop&w=400&q=80"
+    imageUrl: "/images/kualalampur/image5.png"
   },
   {
     id: 6,
     title: "Modern city loft",
     location: "New York, USA",
     price: "$300 / night",
-    imageUrl:
-      "https://plus.unsplash.com/premium_photo-1674676471417-07f613528a94?q=80&w=1690&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageUrl: "/images/kualalampur/image6.png"
   },
   {
     id: 7,
     title: "Modern city loft",
     location: "New York, USA",
     price: "$300 / night",
-    imageUrl:
-      "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    imageUrl: "/images/kualalampur/image7.png"
   },
   {
     id: 8,
     title: "Cozy apartment in Paris",
     location: "Paris, France",
     price: "$120 / night",
-    imageUrl:
-      "https://plus.unsplash.com/premium_photo-1674676471417-07f613528a94?q=80&w=1690&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    guestFav: true,
+    imageUrl: "/images/kualalampur/image8.png"
   },
   {
     id: 9,
     title: "Beachfront villa",
     location: "Malibu, USA",
     price: "$450 / night",
-    imageUrl:
-      "https://images.unsplash.com/photo-1495433324511-bf8e92934d90?auto=format&fit=crop&w=400&q=80"
+    imageUrl: "/images/kualalampur/image2.png"
+  }
+];
+
+export const bangkokListings = [
+  {
+    id: 1,
+    title: "Modern Studio near BTS Siam",
+    location: "Siam, Bangkok, Thailand",
+    price: "฿1,200 / night",
+    imageUrl: "/images/kualalampur/image3.png",
+    guestFav: true
+  },
+  {
+    id: 2,
+    title: "Cozy Apartment in Sukhumvit 11",
+    location: "Sukhumvit 11, Bangkok, Thailand",
+    price: "฿1,800 / night",
+    imageUrl: "/images/kualalampur/image4.png",
+    guestFav: false
+  },
+  {
+    id: 3,
+    title: "Luxury Room near Chao Phraya River",
+    location: "Bang Rak, Bangkok, Thailand",
+    price: "฿2,500 / night",
+    imageUrl: "/images/kualalampur/image5.png",
+    guestFav: true
+  },
+  {
+    id: 4,
+    title: "Budget Hostel near Khao San Road",
+    location: "Banglamphu, Bangkok, Thailand",
+    price: "฿800 / night",
+    imageUrl: "/images/kualalampur/image6.png",
+    guestFav: false
+  },
+  {
+    id: 5,
+    title: "Penthouse Loft at Sukhumvit 24",
+    location: "Sukhumvit 24, Bangkok, Thailand",
+    price: "฿3,200 / night",
+    imageUrl: "/images/kualalampur/image7.png",
+    guestFav: false
+  },
+  {
+    id: 6,
+    title: "Charming Condo near Asok BTS",
+    location: "Asok, Bangkok, Thailand",
+    price: "฿1,500 / night",
+    imageUrl: "/images/kualalampur/image8.png",
+    guestFav: true
+  },
+  {
+    id: 7,
+    title: "Riverside Boutique Suite",
+    location: "Bang Kho Laem, Bangkok, Thailand",
+    price: "฿2,000 / night",
+    imageUrl: "/images/kualalampur/image.png",
+    guestFav: false
+  },
+  {
+    id: 8,
+    title: "Stylish Loft near Thonglor",
+    location: "Thonglor, Bangkok, Thailand",
+    price: "฿2,800 / night",
+    imageUrl: "/images/kualalampur/image2.png",
+    guestFav: false
   }
 ];
