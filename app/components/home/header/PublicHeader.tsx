@@ -3,10 +3,12 @@ import React, { useState, useRef, useEffect } from "react";
 import LogoContainer from "../../logo/LogoContainer";
 import FeaturesSection from "../MidMenu/FeaturesSection";
 
+import { useAuthStore } from "./../../../store/authStore";
+
 export default function FeaturesRow() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-
+  const { isLoggedIn, openLoginModal } = useAuthStore();
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -56,7 +58,9 @@ export default function FeaturesRow() {
               <SideMenuItem text={"Find a co-host"} />
               <SideMenuItem text={"Gift Cards"} />
               <div className="my-1 border-t border-gray-200"></div>
-              <SideMenuItem text={"Login or Signup"} />
+              <div onClick={openLoginModal}>
+                <SideMenuItem text={"Login or Signup"} />
+              </div>
             </ul>
           </div>
         )}

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -9,6 +8,7 @@ import GuestModal from "./../home/GuestModal";
 
 import "react-day-picker/dist/style.css";
 import Modal from "../Modal";
+
 interface GuestCounts {
   adults: number;
   children: number;
@@ -17,7 +17,6 @@ interface GuestCounts {
 }
 export default function SearchBar() {
   const [location, setLocation] = useState("");
-  const [service, setService] = useState("");
   const [range, setRange] = useState<DateRange | undefined>();
   const [openModal, setOpenModal] = useState(false);
   const [isGuestModalOpen, setGuestModalOpen] = useState(false);
@@ -34,7 +33,6 @@ export default function SearchBar() {
       [type]: Math.max(0, prev[type] + delta)
     }));
   };
-  const modalRef = useRef<HTMLDivElement>(null);
 
   // Label inside search bar
   const timelineLabel =
