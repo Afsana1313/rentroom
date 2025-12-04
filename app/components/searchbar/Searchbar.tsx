@@ -5,31 +5,36 @@ import { useState, useRef, useEffect } from "react";
 import { Search, X } from "lucide-react";
 import { format } from "date-fns";
 import { DateRange, DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
+import GuestModal from "./../home/GuestModal";
 
+import "react-day-picker/dist/style.css";
+import Modal from "../Modal";
+interface GuestCounts {
+  adults: number;
+  children: number;
+  infants: number;
+  pets: number;
+}
 export default function SearchBar() {
   const [location, setLocation] = useState("");
   const [service, setService] = useState("");
   const [range, setRange] = useState<DateRange | undefined>();
   const [openModal, setOpenModal] = useState(false);
+  const [isGuestModalOpen, setGuestModalOpen] = useState(false);
 
+  const [guests, setGuests] = useState<GuestCounts>({
+    adults: 0,
+    children: 0,
+    infants: 0,
+    pets: 0
+  });
+  const handleChange = (type: keyof GuestCounts, delta: number) => {
+    setGuests((prev) => ({
+      ...prev,
+      [type]: Math.max(0, prev[type] + delta)
+    }));
+  };
   const modalRef = useRef<HTMLDivElement>(null);
-
-  // Close modal when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        openModal &&
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        setOpenModal(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [openModal]);
 
   // Label inside search bar
   const timelineLabel =
@@ -64,15 +69,14 @@ export default function SearchBar() {
           </div>
 
           {/* Section 3 */}
-          <div className="flex flex-col px-4">
-            <SearchbarText title="Type of Service" />
-            <input
-              type="text"
-              placeholder="Add Service"
-              value={service}
-              onChange={(e) => setService(e.target.value)}
-              className="text-sm focus:outline-none text-gray-600"
-            />
+          <div
+            className="flex flex-col px-4"
+            onClick={() => setGuestModalOpen(true)}
+          >
+            <SearchbarText title="Who" />
+            <span className="text-sm text-gray-600">
+              {displayGuestList(guests)}
+            </span>
           </div>
 
           {/* Search button */}
@@ -83,49 +87,43 @@ export default function SearchBar() {
       </div>
 
       {/* ------------------ MODAL ------------------ */}
-      {openModal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-[1000]">
-          <div
-            ref={modalRef}
-            className="
-              bg-white 
-              p-6 
-              rounded-2xl 
-              shadow-xl 
-              max-w-[760px]
-              w-full
-              animate-fadeIn
-            "
+      {/* Timeline Modal */}
+      <Modal isOpen={openModal} onClose={() => setOpenModal(false)}>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold text-gray-900">
+            Select your timeline
+          </h2>
+          <button
+            onClick={() => setOpenModal(false)}
+            className="hover:bg-gray-200 text-gray-900 rounded-full p-1 transition"
           >
-            {/* Header */}
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-900">
-                Select your timeline
-              </h2>
-
-              <button
-                onClick={() => setOpenModal(false)}
-                className="hover:bg-gray-200 text-gray-900 rounded-full p-1 transition"
-              >
-                <X />
-              </button>
-            </div>
-
-            {/* Calendar */}
-            <div className="flex justify-center">
-              <DayPicker
-                mode="range"
-                selected={range}
-                onSelect={(selectedRange) => setRange(selectedRange)}
-                numberOfMonths={2}
-                pagedNavigation
-                captionLayout="dropdown"
-                className="airbnb-calendar text-gray-900"
-              />
-            </div>
-          </div>
+            <X />
+          </button>
         </div>
-      )}
+
+        <div className="flex justify-center">
+          <DayPicker
+            mode="range"
+            selected={range}
+            onSelect={(selectedRange) => setRange(selectedRange)}
+            numberOfMonths={2}
+            pagedNavigation
+            captionLayout="dropdown"
+            className="airbnb-calendar text-gray-900"
+          />
+        </div>
+      </Modal>
+      <Modal isOpen={isGuestModalOpen} onClose={() => setGuestModalOpen(false)}>
+        {" "}
+        <GuestModal
+          isOpen={isGuestModalOpen}
+          onClose={() => {
+            setGuestModalOpen(false);
+          }}
+          guests={guests}
+          handleChange={handleChange}
+        />
+      </Modal>
 
       {/* ------------ Airbnb Calendar Styles ------------ */}
       <style>
@@ -182,4 +180,23 @@ interface SearchbarTextProps {
 
 const SearchbarText: React.FC<SearchbarTextProps> = ({ title }) => {
   return <span className="text-sm font-semibold text-gray-900">{title}</span>;
+};
+
+export const displayGuestList = (guests: GuestCounts): string => {
+  const parts: string[] = [];
+
+  if (guests.adults > 0 || guests.children > 0)
+    parts.push(
+      `${guests.adults + guests.children} guest${
+        guests.adults > 1 || guests.children ? "s" : ""
+      }`
+    );
+
+  if (guests.infants > 0)
+    parts.push(`${guests.infants} infant${guests.infants > 1 ? "s" : ""}`);
+
+  // if (guests.pets > 0)
+  //   parts.push(`${guests.pets} pet${guests.pets > 1 ? "s" : ""}`);
+
+  return parts.join(" , ") || "Add guests";
 };
