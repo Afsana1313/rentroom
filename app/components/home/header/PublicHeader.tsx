@@ -18,24 +18,30 @@ export default function FeaturesRow() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   return (
-    <div className="flex items-center justify-between h-16 px-6 ">
-      <LogoContainer />
-      <FeaturesSection />
+    <div className="flex items-center justify-between h-16 px-6">
+      {/* Logo - hidden on tablet/mobile */}
+      <div className="hidden md:block">
+        <LogoContainer />
+      </div>
 
-      <div className="">
-        {/* Burger Icon */}
+      {/* Features Section - full width on small screens */}
+      <div className="flex-1 md:flex-none">
+        <FeaturesSection />
+      </div>
+
+      {/* Right Menu / Burger Icon - hidden on tablet/mobile */}
+      <div className="hidden md:block relative">
         <button
           onClick={() => setOpen(!open)}
           className="rounded-md hover:bg-gray-200 transition"
         >
-          <img src="/images/burger-menu.svg" alt="Home" className="w-10 h-10" />
+          <img src="/images/burger-menu.svg" alt="Menu" className="w-10 h-10" />
         </button>
 
-        {/* Dropdown Menu */}
         {open && (
           <div
             ref={menuRef}
-            className="absolute right-5 mt-5 w-48 bg-white shadow-lg rounded-md border border-gray-200 z-50"
+            className="absolute right-0 mt-5 w-48 bg-white shadow-lg rounded-md border border-gray-200 z-50"
           >
             <ul className="flex flex-col p-1">
               <SideMenuItem
@@ -49,7 +55,6 @@ export default function FeaturesRow() {
               <SideMenuItem text={"Refer a host"} />
               <SideMenuItem text={"Find a co-host"} />
               <SideMenuItem text={"Gift Cards"} />
-              {/* Separator */}
               <div className="my-1 border-t border-gray-200"></div>
               <SideMenuItem text={"Login or Signup"} />
             </ul>

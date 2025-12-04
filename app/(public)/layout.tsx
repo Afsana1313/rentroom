@@ -10,7 +10,9 @@ export default function PublicLayout({
       {/* Public Nav */}
       <header className="p-4 bg-gray-100">
         <PublicHeader />
-        <SearchBar />
+        <div className="hidden md:block">
+          <SearchBar />
+        </div>
       </header>
       <main>{children}</main>
     </div>
