@@ -10,22 +10,23 @@ interface ListingCardProps {
   location: string;
   price: string;
   imageUrl: string;
-  guestFav?: boolean; // optional prop
+  rate: number;
+  original?: boolean; // optional prop
 }
-
-export const ListingCard: React.FC<ListingCardProps> = ({
+export const ExCard: React.FC<ListingCardProps> = ({
   title,
-  location,
+  rate,
   price,
   imageUrl,
-  guestFav = false
+
+  original = false
 }) => {
   const [liked, setLiked] = useState(false);
 
   return (
     <Link href={"/rooms"}>
       {" "}
-      <div className="rounded-xl overflow-hidden shadow-lg cursor-pointer hover:shadow-2xl transition w-full relative">
+      <div className="rounded-xl overflow-hidden cursor-pointer transition w-full relative">
         {/* Image */}
         <div className="relative w-full aspect-square">
           <Image
@@ -33,13 +34,13 @@ export const ListingCard: React.FC<ListingCardProps> = ({
             alt={title}
             fill
             className="object-cover rounded-xl"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 20vw"
           />
 
           {/* Guest Fav Badge */}
-          {guestFav && (
+          {original && (
             <div className="absolute top-3 left-3 bg-amber-50 bg-opacity-80 text-gray-900 text-xs font-semibold px-3 py-1 rounded-lg shadow-sm">
-              Guest Favourite
+              Original
             </div>
           )}
 
@@ -64,9 +65,13 @@ export const ListingCard: React.FC<ListingCardProps> = ({
 
         {/* Card Content */}
         <div className="p-4 bg-white">
-          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-          <p className="text-sm text-gray-600">{location}</p>
-          <p className="mt-2 text-sm font-medium text-gray-900">{price}</p>
+          <h3 className=" font-semibold text-gray-600">{title}</h3>
+
+          <p className="mt-2 text-sm font-medium text-gray-500 flex flex-row items-center gap-1">
+            {`From $${price} / guest \u00B7 `}
+            <img src="/images/star.svg" alt="Rating" className="w-3 h-3 ml-1" />
+            {rate}
+          </p>
         </div>
       </div>
     </Link>
