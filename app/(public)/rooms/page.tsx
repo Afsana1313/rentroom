@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
+import { Star } from "lucide-react";
 
 import React from "react";
 import {
@@ -79,14 +80,63 @@ const page = () => {
 
       {/* 3. Footer Info Section */}
       {/* Mobile: order-3 (remains at bottom) */}
-      <div className="order-3 flex flex-col md:flex-row justify-between items-start mt-8 gap-6">
+      <div className="order-3 flex flex-col justify-items-start mt-8 gap-6">
         <div className="flex-1">
           <h2 className="text-xl font-semibold">Room in {listing.location}</h2>
           <p className="text-gray-600 mt-1">{listing.description}</p>
         </div>
 
+        <div className="flex-1">
+          <div className="flex items-center justify-between gap-6 rounded-2xl border border-gray-200 px-8 py-6">
+            {/* Left: Guest Favorite */}
+            <div className="flex items-center gap-4 min-w-[180px]">
+              <img src="/images/laurel-left.png" alt="" className="w-8 h-8" />
+              <div>
+                <p className="text-xl font-semibold leading-tight">
+                  Guest
+                  <br />
+                  favorite
+                </p>
+              </div>
+              <img src="/images/laurel-right.png" alt="" className="w-8 h-8" />
+            </div>
+
+            {/* Middle text */}
+            <p className="text-lg text-gray-800 max-w-md">
+              One of the most loved homes on Airbnb, according to guests
+            </p>
+
+            {/* Right: Rating */}
+            <div className="flex items-center gap-6">
+              {/* Rating */}
+              <div className="text-center">
+                <p className="text-2xl font-semibold">4.92</p>
+                <div className="flex justify-center gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      fill="black"
+                      className="text-black"
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="h-10 w-px bg-gray-300" />
+
+              {/* Reviews */}
+              <div className="text-center">
+                <p className="text-2xl font-semibold">59</p>
+                <p className="text-sm text-gray-600">Reviews</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Rare Find Card: Full width on mobile, fixed width on desktop */}
-        {listing.isRareFind && (
+        {/* {listing.isRareFind && (
           <div className="border rounded-xl p-6 flex items-start gap-4 shadow-sm w-full md:w-[350px]">
             <div className="text-[#E31C5F] pt-1">
               <svg viewBox="0 0 32 32" className="w-8 h-8 fill-current">
@@ -100,7 +150,7 @@ const page = () => {
               </p>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
