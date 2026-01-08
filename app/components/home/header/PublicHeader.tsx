@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import LogoContainer from "../../logo/LogoContainer";
 import FeaturesSection from "../MidMenu/FeaturesSection";
+import { usePathname } from "next/navigation";
 
 import { useAuthStore } from "./../../../store/authStore";
 
@@ -9,6 +10,11 @@ export default function FeaturesRow() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn, openLoginModal } = useAuthStore();
+
+  const pathname = usePathname();
+  const hideOnRoutes = ["/rooms", "/room", "/checkout"];
+  const shouldHide = hideOnRoutes.includes(pathname);
+
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -20,19 +26,20 @@ export default function FeaturesRow() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
   return (
-    <div className="flex items-center justify-between h-16 px-6">
+    <div className="relative flex items-center justify-center h-16 px-6">
       {/* Logo - hidden on tablet/mobile */}
-      <div className="hidden md:block">
+      <div className="absolute left-6 hidden md:block">
         <LogoContainer />
       </div>
 
       {/* Features Section - full width on small screens */}
-      <div className="flex-1 md:flex-none">
+      {/* flex-1 md:flex-none */}
+      <div className="">
         <FeaturesSection />
       </div>
 
       {/* Right Menu / Burger Icon - hidden on tablet/mobile */}
-      <div className="hidden md:block relative">
+      <div className="absolute right-6 hidden md:block">
         <button
           onClick={() => setOpen(!open)}
           className="rounded-md hover:bg-gray-200 transition"

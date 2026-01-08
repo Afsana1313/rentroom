@@ -44,22 +44,22 @@ export default function SearchBar() {
     <>
       {/* Search Bar */}
       <div className="w-full flex justify-center mt-10 relative">
-        <div className="flex items-center bg-white border shadow-md rounded-full px-4 py-2 gap-3 hover:shadow-lg transition">
+        <div className="flex items-center bg-white border shadow-md rounded-full px-4 py-2 gap-3 hover:shadow-lg transition w-[600px]">
           {/* Section 1 */}
-          <div className="flex flex-col px-4 border-r">
+          <div className="flex flex-col px-4 border-r flex-1 min-w-0">
             <SearchbarText title="Destination" />
             <input
               type="text"
               placeholder="Search"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="text-sm focus:outline-none text-gray-600"
+              className="text-sm placeholder-gray-600 focus:outline-none text-gray-600"
             />
           </div>
 
           {/* Timeline trigger */}
           <div
-            className="flex flex-col px-4 border-r cursor-pointer"
+            className="flex flex-col px-4 border-r flex-1 min-w-0"
             onClick={() => setOpenModal(true)}
           >
             <SearchbarText title="Timeline" />
@@ -68,7 +68,7 @@ export default function SearchBar() {
 
           {/* Section 3 */}
           <div
-            className="flex flex-col px-4"
+            className="flex flex-col px-4 border-r flex-1 min-w-0"
             onClick={() => setGuestModalOpen(true)}
           >
             <SearchbarText title="Who" />
